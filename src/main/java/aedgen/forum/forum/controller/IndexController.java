@@ -16,7 +16,7 @@ public class IndexController {
     }
 
      */
-    @GetMapping("/key")
+    @GetMapping("/")
     public String index() {
         return "index";
     }
