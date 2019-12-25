@@ -30,9 +30,9 @@ public class GithubProvider {
                 System.out.println(token);
                 times = times + 1;
 
-                return string;
+                return token;
 
-        } catch (IOException e) {
+        } catch (Exception e) {
                 e.printStackTrace();
             }
         return null;
