@@ -22,6 +22,7 @@ public class OAuthController {
         accessTokenDTO.setCode(code);
         accessTokenDTO.setRedirect_uri("http://localhost:8885/callback");
         accessTokenDTO.setState(state);
+        githubProvider.getAccessToken(accessTokenDTO);
         return "index";
     }
 }
