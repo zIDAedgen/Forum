@@ -24,8 +24,10 @@ public class GithubProvider {
                     .build();
             try (Response response = client.newCall(request).execute()) {
                 String string = response.body().string();
+                String token = string.split("&")[0].split("=")[1];
                 System.out.println(string);
                 System.out.println(times);
+                System.out.println(token);
                 times = times + 1;
 
                 return string;
