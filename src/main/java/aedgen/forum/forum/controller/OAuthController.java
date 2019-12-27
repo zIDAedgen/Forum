@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 public class OAuthController {
 
@@ -24,7 +26,10 @@ public class OAuthController {
 
     @GetMapping("/callback")
     public String callback(@RequestParam(name="code") String code,
-                           @RequestParam(name="state") String state) {
+                           @RequestParam(name="state") String state,
+                            //session is fetched in http
+                           //For HttpServletRequest object,it denotes the request from client
+                            HttpServletRequest request) {
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
         accessTokenDTO.setClient_id(clientId);
         accessTokenDTO.setClient_secret(clientSecret);
@@ -33,7 +38,13 @@ public class OAuthController {
         accessTokenDTO.setState(state);
         String accessToken = githubProvider.getAccessToken(accessTokenDTO);
         GithubUser user = githubProvider.getUser(accessToken);
-        System.out.println(user.getName());
-        return "index";
+        //System.out.println(user.getName());
+        if (user != null) {
+            //user is not null : we got the info of the user, login successfully
+            request.getSession().setAttribute("user", user);
+            return "redirect:/";
+        } else {
+            return "redirect:/";
+        }
     }
 }
