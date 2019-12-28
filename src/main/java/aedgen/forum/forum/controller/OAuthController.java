@@ -3,6 +3,8 @@ package aedgen.forum.forum.controller;
 
 import aedgen.forum.forum.DTO.AccessTokenDTO;
 import aedgen.forum.forum.DTO.GithubUser;
+import aedgen.forum.forum.Mapper.UserMapper;
+import aedgen.forum.forum.Model.User;
 import aedgen.forum.forum.provider.GithubProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,12 +13,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.UUID;
 
 @Controller
 public class OAuthController {
 
     @Autowired
     private GithubProvider githubProvider;
+    @Autowired
+    private UserMapper userMapper;
     @Value("${github.client.id}")
     private String clientId;
     @Value("${github.client.secret}")
@@ -37,11 +42,18 @@ public class OAuthController {
         accessTokenDTO.setRedirect_uri(redirectUri);
         accessTokenDTO.setState(state);
         String accessToken = githubProvider.getAccessToken(accessTokenDTO);
-        GithubUser user = githubProvider.getUser(accessToken);
+        GithubUser githubUser = githubProvider.getUser(accessToken);
         //System.out.println(user.getName());
-        if (user != null) {
+        if (githubUser != null) {
+            User user = new User();
+            user.setToken(UUID.randomUUID().toString());
+            user.setName(githubUser.getName());
+            user.setAccountId(String.valueOf(githubUser.getId()));
+            user.setGmtCreate(System.currentTimeMillis());
+            user.setGmtModified(user.getGmtCreate());
+            userMapper.insert(user);
             //user is not null : we got the info of the user, login successfully
-            request.getSession().setAttribute("user", user);
+            request.getSession().setAttribute("user", githubUser);
             return "redirect:/";
         } else {
             return "redirect:/";
