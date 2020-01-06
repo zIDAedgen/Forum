@@ -1,0 +1,12 @@
+body {
+background-color: #3c763d;
+}
+.bak {
+    background-color: darkgray;
+    margin:20px;
+}
+
+.btn-publish {
+    float:right;
+    margin-bottom: 10px;
+}
