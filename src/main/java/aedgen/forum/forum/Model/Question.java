@@ -3,7 +3,7 @@ package aedgen.forum.forum.Model;
 public class Question {
     private Integer id;
     private String title;
-    private String desciption;
+    private String description;
     private String tag;
     private Long gmtCreate;
     private Long gmtModified;
@@ -28,12 +28,12 @@ public class Question {
         this.title = title;
     }
 
-    public String getDesciption() {
-        return desciption;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesciption(String desciption) {
-        this.desciption = desciption;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getTag() {
