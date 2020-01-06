@@ -47,7 +47,7 @@ public class OAuthController {
         String accessToken = githubProvider.getAccessToken(accessTokenDTO);
         GithubUser githubUser = githubProvider.getUser(accessToken);
         //System.out.println(user.getName());
-        if (githubUser != null) {
+        if (githubUser != null && githubUser.getId() != null) {
             User user = new User();
             //user.setToken(UUID.randomUUID().toString());
             String token = UUID.randomUUID().toString();
