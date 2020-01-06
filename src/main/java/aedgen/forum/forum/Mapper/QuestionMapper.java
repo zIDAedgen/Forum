@@ -8,6 +8,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface QuestionMapper {
 
-    @Insert("insert into (title, description, gmt_create, gmt_modified, post_man, tag) values (#{title}, #{description}, #{gmtCreate}, #{gmtModidied}, #{creator}, #{tag})")
+    @Insert("insert into questions (title, description, gmt_create, gmt_modified, post_man, tag) values (#{title}, #{description}, #{gmtCreate}, #{gmtModified}, #{creator}, #{tag})")
     public void create(Question question);
 }

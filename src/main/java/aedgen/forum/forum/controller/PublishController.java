@@ -31,11 +31,33 @@ public class PublishController {
 
     @PostMapping("/publish")
     public String doPublish(
-        @RequestParam("title") String title,
-        @RequestParam("description") String description,
-        @RequestParam("tag") String tag,
+        @RequestParam(value = "title", required = false) String title,
+        @RequestParam(value = "description", required = false) String description,
+        @RequestParam(value = "tag", required = false) String tag,
         HttpServletRequest request,
         Model model ) {
+
+
+        if (title == null || title == "") {
+            model.addAttribute("error", "need a title");
+            return "publish";
+        }
+
+        if (description == null || description == "") {
+            model.addAttribute("error", "need a description");
+            return "publish";
+        }
+
+        if (tag == null || tag == "") {
+            model.addAttribute("error", "need a tag");
+            return "publish";
+        }
+
+
+        model.addAttribute("title", title);
+        model.addAttribute("description", description);
+        model.addAttribute("tag", tag);
+
 
         User user = null;
         Cookie[] cookies = request.getCookies();
@@ -64,7 +86,7 @@ public class PublishController {
         question.setGmtCreate(System.currentTimeMillis());
         question.setGmtModified(question.getGmtCreate());
         questionMapper.create(question);
-        return "/";
+        return "redirect:/";
     }
 
 
