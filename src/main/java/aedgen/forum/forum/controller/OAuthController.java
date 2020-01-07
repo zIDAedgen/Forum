@@ -58,6 +58,7 @@ public class OAuthController {
             user.setGmtCreate(System.currentTimeMillis());
             //user.getGmtCreate(java.time.LocalTime.now());
             user.setGmtModified(user.getGmtCreate());
+            user.setAvatarUrl(githubUser.getAvatar_url());
             userMapper.insert(user);
             response.addCookie(new Cookie("token", token));
             //user is not null : we got the info of the user, login successfully

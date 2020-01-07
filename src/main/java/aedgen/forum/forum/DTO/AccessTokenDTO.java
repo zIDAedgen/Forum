@@ -1,5 +1,8 @@
 package aedgen.forum.forum.DTO;
 
+import lombok.Data;
+
+@Data
 public class AccessTokenDTO {
     private String client_id;
     private String client_secret;
@@ -7,6 +10,8 @@ public class AccessTokenDTO {
     private String redirect_uri;
     private String state;
     //using control + n to create setter and getter
+    /*
+    After using Lombok, the setter and getter will be completed via @Data
     public String getClient_id() {
         return client_id;
     }
@@ -46,4 +51,6 @@ public class AccessTokenDTO {
     public void setState(String state) {
         this.state = state;
     }
+
+     */
 }
