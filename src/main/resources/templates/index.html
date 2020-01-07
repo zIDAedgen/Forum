@@ -106,12 +106,13 @@
             <div class="media" th:each="question : ${questions}">
                 <div class="media-left">
                     <a href="#">
-                        <img class="media-object" src="">
+                        <img class="media-object" th:src="${question.user.getAvatarUrl()}">
                     </a>
                 </div>
                 <div class="media-body">
                     <h4 class="media-heading" th:text="${question.title}">Media heading</h4>
-                    ...
+                    <span th:text="${question.description}"></span><br>
+                    <span><span th:text="${question.commentCount}"> - comments</span><span th:text="${question.viewCount}"> - reviews</span></span>
                 </div>
             </div>
 
