@@ -1,7 +1,11 @@
 package aedgen.forum.forum.controller;
 
+import aedgen.forum.forum.DTO.QuestionDTO;
+import aedgen.forum.forum.Mapper.QuestionMapper;
 import aedgen.forum.forum.Mapper.UserMapper;
+import aedgen.forum.forum.Model.Question;
 import aedgen.forum.forum.Model.User;
+import aedgen.forum.forum.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 
 @Controller
@@ -24,8 +29,15 @@ public class IndexController {
      */
     @Autowired(required = false)
     private UserMapper userMapper;
+
+    @Autowired(required = false)
+    private QuestionService questionService;
+
+
+
     @GetMapping("/")
-    public String index(HttpServletRequest request) {
+    public String index(HttpServletRequest request,
+                        Model model) {
         Cookie[] cookies = request.getCookies();
         for (Cookie cookie : cookies) {
             if ("token".equals(cookie.getName())) {
@@ -39,6 +51,8 @@ public class IndexController {
         }
 
 
+        List<QuestionDTO> questionList = questionService.list();
+        model.addAttribute("questions", questionList);
 
         return "index";
     }
