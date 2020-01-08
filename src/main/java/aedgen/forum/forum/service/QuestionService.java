@@ -24,6 +24,8 @@ public class QuestionService {
         List<Question> questions = questionMapper.list();
         List<QuestionDTO> questionDTOList = new ArrayList<>();
         for (Question question : questions) {
+            System.out.println("Creator");
+            System.out.println(question.getCreator());
             User user = userMapper.findById(question.getCreator());
             //exchange question to DTO
             QuestionDTO questionDTO = new QuestionDTO();
