@@ -4,6 +4,7 @@ package aedgen.forum.forum.Mapper;
 import aedgen.forum.forum.Model.Question;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -15,5 +16,10 @@ public interface QuestionMapper {
     public void create(Question question);
 
     @Select("select * from thequestions limit #{offset}, #{size}")
-    List<Question> list(Integer offset, Integer size);
+        //This is the wrong method. While the parameter is not an object, we need to map it
+        //List<Question> list(Integer offset, Integer size);
+    List<Question> list(@Param(value = "offset") Integer offset, @Param(value = "size") Integer size);
+
+    @Select("select count(1) from thequestions")
+    Integer count();
 }

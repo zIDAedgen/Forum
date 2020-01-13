@@ -1,13 +1,8 @@
 package aedgen.forum.forum.controller;
 
-import aedgen.forum.forum.DTO.PageDTO;
-import aedgen.forum.forum.DTO.QuestionDTO;
-import aedgen.forum.forum.Mapper.QuestionMapper;
 import aedgen.forum.forum.Mapper.UserMapper;
-import aedgen.forum.forum.Model.Question;
 import aedgen.forum.forum.Model.User;
 import aedgen.forum.forum.service.QuestionService;
-import com.sun.tools.internal.xjc.model.CDefaultValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 
 @Controller
