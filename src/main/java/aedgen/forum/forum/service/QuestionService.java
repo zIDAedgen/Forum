@@ -42,8 +42,8 @@ public class QuestionService {
             questionDTOList.add(questionDTO);
         }
         pageDTO.setQuestions(questionDTOList);
-        Integer totalCounte = questionMapper.count();
-        pageDTO.pageProcessing(totalCounte, page, size );
+        Integer totalCount = questionMapper.count();
+        pageDTO.pageProcessing(totalCount, page, size );
 
         return pageDTO;
     }

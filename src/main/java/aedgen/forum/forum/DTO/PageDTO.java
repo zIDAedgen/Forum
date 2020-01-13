@@ -17,23 +17,24 @@ public class PageDTO {
     private List<Integer> pages = new ArrayList<>();
 
 
-    public void pageProcessing(Integer totalCounte, Integer page, Integer size) {
+    public void pageProcessing(Integer totalCount, Integer page, Integer size) {
+        this.page = page;
         Integer totalPage;
-        if (totalCounte % size == 0) {
-            totalPage = totalCounte / size;
+        if (totalCount % size == 0) {
+            totalPage = totalCount / size;
         } else {
-            totalPage = totalCounte / size + 1;
+            totalPage = totalCount / size + 1;
         }
 
 
         pages.add(page);
-        for (int i = 0; i <= 3; i++) {
+        for (int i = 1; i <= 3; i++) {
             if (page - i > 0) {
-                pages.add(page - i, 0);
+                pages.add(0, page - i );
             }
 
-            if (page + i <= totalCounte) {
-                pages.add(page + 1);
+            if (page + i <= totalPage) {
+                pages.add(page + i);
             }
         }
         //Whether display the previousPage
