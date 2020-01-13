@@ -20,8 +20,14 @@ public class QuestionService {
     private QuestionMapper questionMapper;
     @Autowired(required = false)
     private UserMapper userMapper;
-    public List<QuestionDTO> list() {
-        List<Question> questions = questionMapper.list();
+
+
+    public List<QuestionDTO> list(Integer page, Integer size) {
+
+        //size*(page - 1)
+        Integer offset = size * (page - 1);
+
+        List<Question> questions = questionMapper.list(offset, size);
         List<QuestionDTO> questionDTOList = new ArrayList<>();
         for (Question question : questions) {
             System.out.println("Creator");

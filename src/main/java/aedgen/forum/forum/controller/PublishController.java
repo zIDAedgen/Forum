@@ -87,6 +87,7 @@ public class PublishController {
         question.setGmtModified(question.getGmtCreate());
         questionMapper.create(question);
         return "redirect:/";
+        //return "publish";
     }
 
 

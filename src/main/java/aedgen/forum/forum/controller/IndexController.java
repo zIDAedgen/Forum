@@ -6,6 +6,7 @@ import aedgen.forum.forum.Mapper.UserMapper;
 import aedgen.forum.forum.Model.Question;
 import aedgen.forum.forum.Model.User;
 import aedgen.forum.forum.service.QuestionService;
+import com.sun.tools.internal.xjc.model.CDefaultValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,8 +38,11 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(HttpServletRequest request,
-                        Model model) {
+                        Model model,
+                        @RequestParam(name = "page", defaultValue = "1") Integer page,
+                        @RequestParam(name = "size", defaultValue = "5") Integer size) {
         Cookie[] cookies = request.getCookies();
+        System.out.println(cookies);
         for (Cookie cookie : cookies) {
             if ("token".equals(cookie.getName())) {
                 String token = cookie.getValue();
@@ -51,7 +55,7 @@ public class IndexController {
         }
 
 
-        List<QuestionDTO> questionList = questionService.list();
+        List<QuestionDTO> questionList = questionService.list(page, size);
         model.addAttribute("questions", questionList);
 
         return "index";
