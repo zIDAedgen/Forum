@@ -1,5 +1,6 @@
 package aedgen.forum.forum.controller;
 
+import aedgen.forum.forum.DTO.PageDTO;
 import aedgen.forum.forum.DTO.QuestionDTO;
 import aedgen.forum.forum.Mapper.QuestionMapper;
 import aedgen.forum.forum.Mapper.UserMapper;
@@ -55,8 +56,8 @@ public class IndexController {
         }
 
 
-        List<QuestionDTO> questionList = questionService.list(page, size);
-        model.addAttribute("questions", questionList);
+        PageDTO pagination = questionService.list(page, size);
+        model.addAttribute("pagination", pagination);
 
         return "index";
     }

@@ -103,7 +103,7 @@
                 </div>
             </div>
             --->
-            <div class="media" th:each="question : ${questions}">
+            <div class="media" th:each="question : ${pagination.questions}">
                 <div class="media-left">
                         <img class="media-object" th:src="${question.user.getAvatarUrl()}">
                 </div>

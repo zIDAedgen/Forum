@@ -1,6 +1,7 @@
 package aedgen.forum.forum.service;
 
 
+import aedgen.forum.forum.DTO.PageDTO;
 import aedgen.forum.forum.DTO.QuestionDTO;
 import aedgen.forum.forum.Mapper.QuestionMapper;
 import aedgen.forum.forum.Mapper.UserMapper;
@@ -22,13 +23,14 @@ public class QuestionService {
     private UserMapper userMapper;
 
 
-    public List<QuestionDTO> list(Integer page, Integer size) {
+    public PageDTO list(Integer page, Integer size) {
 
         //size*(page - 1)
         Integer offset = size * (page - 1);
 
         List<Question> questions = questionMapper.list(offset, size);
         List<QuestionDTO> questionDTOList = new ArrayList<>();
+        PageDTO pageDTO = new PageDTO();
         for (Question question : questions) {
             System.out.println("Creator");
             System.out.println(question.getCreator());
@@ -39,6 +41,7 @@ public class QuestionService {
             questionDTO.setUser(user);
             questionDTOList.add(questionDTO);
         }
-        return questionDTOList;
+        pageDTO.setQuestionnarire(questionDTOList);
+        return pageDTO;
     }
 }
