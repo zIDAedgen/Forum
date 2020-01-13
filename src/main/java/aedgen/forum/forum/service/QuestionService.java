@@ -1,6 +1,7 @@
 package aedgen.forum.forum.service;
 
 
+import aedgen.forum.forum.DTO.PageDTO;
 import aedgen.forum.forum.DTO.QuestionDTO;
 import aedgen.forum.forum.Mapper.QuestionMapper;
 import aedgen.forum.forum.Mapper.UserMapper;
@@ -40,7 +41,7 @@ public class QuestionService {
             questionDTO.setUser(user);
             questionDTOList.add(questionDTO);
         }
-        pageDTO.setQuestionnarire(questionDTOList);
+        pageDTO.setQuestions(questionDTOList);
         Integer totalCounte = questionMapper.count();
         pageDTO.pageProcessing(totalCounte, page, size );
 

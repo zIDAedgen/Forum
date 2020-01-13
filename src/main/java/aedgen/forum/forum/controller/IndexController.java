@@ -1,5 +1,6 @@
 package aedgen.forum.forum.controller;
 
+import aedgen.forum.forum.DTO.PageDTO;
 import aedgen.forum.forum.Mapper.UserMapper;
 import aedgen.forum.forum.Model.User;
 import aedgen.forum.forum.service.QuestionService;
