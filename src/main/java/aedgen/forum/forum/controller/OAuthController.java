@@ -44,7 +44,11 @@ public class OAuthController {
         accessTokenDTO.setCode(code);
         accessTokenDTO.setRedirect_uri(redirectUri);
         accessTokenDTO.setState(state);
+
+        //return the accessToken
         String accessToken = githubProvider.getAccessToken(accessTokenDTO);
+
+        //return the info of the user
         GithubUser githubUser = githubProvider.getUser(accessToken);
         //System.out.println(user.getName());
         if (githubUser != null && githubUser.getId() != null) {
