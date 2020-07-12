@@ -9,7 +9,7 @@ public class User {
     private Long gmtModified;
     private String avatarUrl;
 
-
+    //function
     public String getAvatarUrl() {
         return avatarUrl;
     }
